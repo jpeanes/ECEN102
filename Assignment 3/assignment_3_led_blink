@@ -1,5 +1,6 @@
 // ECEN102.003 Activity #3, Led blink tutorial
 // Joshua Eanes 1/29/2022
+// Tinkercad simulation: https://www.tinkercad.com/things/9UfLfNc6qsh-ecen102-assignment-3/editel?sharecode=5CuIVibjfL4gKdHTJW6v9SIEZnyRGqzoDxbX9Drohp0
 
 // set pin variables
 int green = 12; // green LED
