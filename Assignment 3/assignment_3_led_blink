@@ -1,15 +1,17 @@
 // ECEN102.003 Activity #3, Led blink tutorial
 // Joshua Eanes 1/29/2022
 // Tinkercad simulation: https://www.tinkercad.com/things/9UfLfNc6qsh-ecen102-assignment-3/editel?sharecode=5CuIVibjfL4gKdHTJW6v9SIEZnyRGqzoDxbX9Drohp0
+// Video demonstration: https://youtu.be/Aag0zQkCi30
+
 
 // set pin variables
 int green = 12; // green LED
 int yellow = 11; // yellow LED
 int red = 10; // red LED
 
-int modeSelect = 8; // connect pin to change modes
-int potAdj = 0; // potentiometer value
-
+int modeSelect = 8; // connect pin 8 to 5v to change modes
+                    // otherwise hold low to ground
+int potAdj = 0; // potentiometer value from analog pin 0
 
 void setup() {
   // initialize serial monitor
@@ -23,14 +25,22 @@ void setup() {
 }
 
 void loop() {
+  
   // get potentiometer resistance
   int potVal = analogRead(A0);
+  
   Serial.println(potVal); // print potVal to serial
+  
   // choose mode with switch
   bool mode = digitalRead(modeSelect);
-  Serial.println(mode); // print mode to serial
+  
+  Serial.println(mode);   // print mode to serial
+  Serial.println(potVal); // print potVal to serial
+  
   // mode 1 blinks with frequency of pot value,
   // mode 2 uses pot to select between all on, g/y/r, or all off
+  
+  // mode 1
   if(mode == 1){
     // blink example
     digitalWrite(green, HIGH);
@@ -43,8 +53,10 @@ void loop() {
     delay(potVal);
     digitalWrite(red, LOW);
   }
+  
+  // mode 2
   else{
-    // potentiometer control
+    // potentiometer selection control
     if(potVal >= 1000){
     digitalWrite(red, HIGH);
     digitalWrite(yellow, HIGH);
